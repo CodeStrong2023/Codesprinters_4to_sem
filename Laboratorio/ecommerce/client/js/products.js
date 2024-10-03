@@ -1,30 +1,30 @@
 const productos = [
-    {
-        id: 1,
-        productName: "Banana",
-        price: 480,
-        quanty: 1,
-        img: "../media/banana.png",
-    },
-    {
-        id: 2,
-        productName: "Leche",
-        price: 950,
-        quanty: 1,
-        img: "../media/leche.png",
-    },
-    {
-        id: 3,
-        productName: "Pollo",
-        price: 750,
-        quanty: 1,
-        img: "../media/pollo.png",
-    },
-    {
-        id: 4,
-        productName: "Mayonesa",
-        price: 510,
-        quanty: 1,
-        img: "../media/mayonesa.png",
-    },
-]
+  {
+    id: 1,
+    productName: "El Espejo de la Naturaleza",
+    price: 120000,
+    quanty: 1,
+    img: "./media/el-espejo-de-la-naturaleza.jpg",
+  },
+  {
+    id: 2,
+    productName: "Sombras de la Luna",
+    price: 150000,
+    quanty: 1,
+    img: "./media/sombras-de-la-luna.jpg",
+  },
+  {
+    id: 3,
+    productName: "Colores del Atardecer",
+    price: 135000,
+    quanty: 1,
+    img: "./media/colores-del-atardecer.jpg",
+  },
+  {
+    id: 4,
+    productName: "Río Tranquilo",
+    price: 110000,
+    quanty: 1,
+    img: "./media/rio-tranquilo.jpg",
+  },
+];

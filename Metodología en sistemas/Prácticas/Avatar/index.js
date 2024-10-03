@@ -27,6 +27,8 @@ function iniciarJuego() {
   document
     .getElementById("boton-ocultar-reglas")
     .addEventListener("click", ocultarReglas);
+  crearPersonajes();
+  renderizarPersonajes();
 }
 function mostrarReglas() {
   document.getElementById("reglas-del-juego").style.display = "block";
@@ -141,6 +143,45 @@ function ataqueAleatorioEnemigo() {
 
 function aleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+class Personaje {
+  constructor(nombre, imagen) {
+    this.nombre = nombre;
+    this.imagen = imagen;
+  }
+}
+
+let personajes = [
+  new Personaje("Zuko", "./media/zuko.jpg"),
+  new Personaje("Katara", "./media/katara.jpg"),
+  new Personaje("Aang", "./media/aang.jpg"),
+  new Personaje("Toph", "./media/toph.jpg"),
+];
+function renderizarPersonajes() {
+  const contenedorPersonajes = document.getElementById("personajes-container");
+  contenedorPersonajes.innerHTML = "";
+  personajes.forEach((personaje, index) => {
+    contenedorPersonajes.innerHTML += `
+      <label for="personaje-${index}">${personaje.nombre}</label>
+      <input type="radio" name="personaje" id="personaje-${index}" />
+    `;
+  });
+}
+function crearPersonajes() {
+  document
+    .getElementById("boton-agregar-personaje")
+    .addEventListener("click", () => {
+      const nombre = document.getElementById("nuevo-personaje-nombre").value;
+      const imagen = document.getElementById("nuevo-personaje-imagen").value;
+
+      if (nombre && imagen) {
+        const nuevoPersonaje = new Personaje(nombre, imagen);
+        personajes.push(nuevoPersonaje);
+        renderizarPersonajes();
+      } else {
+        alert("Por favor, completa todos los campos.");
+      }
+    });
 }
 
 window.addEventListener("load", iniciarJuego);

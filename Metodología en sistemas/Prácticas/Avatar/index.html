@@ -14,7 +14,7 @@
       <button id="boton-reglas">Reglas del Juego</button>
       <button id="boton-ocultar-reglas">Ocultar reglas</button>
     </section>
-
+    <!-- CAMBIO EN EL AREA DE TRABAJO -->
     <section id="reglas-del-juego">
       <h4>REGLAS DEL JUEGO</h4>
       <ol>
@@ -98,26 +98,22 @@
     </section>
     <section id="seleccionar-personaje">
       <h2>Elige tu Personaje</h2>
-
-      <label for="zuko">Zuko</label>
-      <!--Esta etiqueta es para darle un indicador a los usuarios de que están seleccionando-->
-      <input type="radio" name="personaje" id="zuko" />
-      <!-- name es para agrupar todos los imputs y poder seleccionar-->
-
-      <label for="katara">Katara</label>
-      <!--El atributo for ayuda a vincular un label con un imput a través del mismo id-->
-      <input type="radio" name="personaje" id="katara" />
-      <!--Acá van los personajes-->
-
-      <label for="aang">Aang</label>
-      <input type="radio" name="personaje" id="aang" />
-      <!--Le damos un atributo id para saber cual es el valor de cada uno-->
-
-      <label for="toph">Toph</label>
-      <input type="radio" name="personaje" id="toph" />
-
+      <div id="personajes-container"></div>
       <button id="boton-personaje">Seleccionar</button>
       <!-- El botón para seleccionar el personaje-->
+
+      <h3>Agregar un nuevo personaje</h3>
+      <input
+        type="text"
+        id="nuevo-personaje-nombre"
+        placeholder="Nombre del personaje"
+      />
+      <input
+        type="text"
+        id="nuevo-personaje-imagen"
+        placeholder="URL de la imagen"
+      />
+      <button id="boton-agregar-personaje">Agregar Personaje</button>
     </section>
 
     <section id="seleccionar-ataque">

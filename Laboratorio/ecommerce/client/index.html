@@ -5,16 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
+    <title>Productos de arte</title>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
   </head>
   <body>
+    <nav class="navbar">
+      <div class="logo">Logo</div>
+      <div class="search-box">
+        <input type="text" placeholder="Search products..." />
+      </div>
+      <div class="cart-btn" id="cart-btn">🛒</div>
+      <span class="cart-counter" id="cart-counter">0</span>
+    </nav>
+
+    <div class="filters">
+      <div class="filter-box"></div>
+      <div class="filter-box"></div>
+      <div class="filter-box"></div>
+      <div class="filter-box"></div>
+    </div>
+
     <div class="card-products-container">
       <div class="card-products" id="shopContent"></div>
     </div>
 
-    <div class="cart-btn" id="cart-btn">🛒</div>
-    <span class="cart-counter" id="cart-counter">0</span>
+    <div class="pagination">
+      <button>Anterior</button>
+      <span>Página 1 de 5</span>
+      <button>Siguiente</button>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-content"></div>
+    </footer>
 
     <div class="modal-overlay" id="modal-overlay"></div>
     <div class="modal-container" id="modal-container"></div>
