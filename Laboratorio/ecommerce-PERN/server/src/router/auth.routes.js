@@ -1,10 +1,8 @@
-import { Router } from "express";
-
+import Router from "express-promise-router";
+import { signup } from "../controllers/auth.controller.js";
 const router = Router();
 
-router.post("/signup", (req, res) => {
-  res.json({ message: "Signup route" });
-});
+router.post("/signup", signup);
 
 router.post("/signin", (req, res) => {
   res.json({ message: "Signin route" });
