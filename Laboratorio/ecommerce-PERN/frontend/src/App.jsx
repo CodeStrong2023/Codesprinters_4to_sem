@@ -6,6 +6,7 @@ import ProfilePage from "./pages/ProfilePage";
 import RegisterPage from "./pages/RegisterPage";
 import TareasFormPage from "./pages/TareasFormPage";
 import TareasPage from "./pages/TareasPage";
+import NotFound from "./pages/NotFound";
 function App() {
   return (
     <Routes>
@@ -17,6 +18,7 @@ function App() {
       <Route path="/tareas" element={<TareasPage />} />
       <Route path="/tareas/new" element={<TareasFormPage />} />
       <Route path="/tareas/editar/:id" element={<TareasFormPage />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

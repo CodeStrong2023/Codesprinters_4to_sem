@@ -1,16 +1,30 @@
 // RegisterPage.js
 import { Button, Card, Input } from "../components/ui";
 import { useForm } from "react-hook-form";
-
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+    const response = await axios.post(
+      "http://localhost:3000/api/signup",
+      data,
+      {
+        withCredentials: true,
+      }
+    );
+    setUser(response.data.user);
+    navigate("/profile");
   };
 
   return (
@@ -47,6 +61,11 @@ const RegisterPage = () => {
           )}
           <Button>Registrarse</Button>
         </form>
+        <div>
+          <p className="text-center text-white font-bold mt-4">
+            ¿Ya tienes cuenta? <Link to={"/login"}>Iniciar Sesión</Link>
+          </p>
+        </div>
       </Card>
     </div>
   );
