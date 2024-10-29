@@ -4,20 +4,25 @@ import { createToken } from "../libs/jwt.js";
 import md5 from "md5";
 export const signup = async (req, res) => {
   try {
-    const { nombre, email, password } = req.body;
+    const { name, email, password } = req.body;
     const hash = await bcrypt.hash(password, 10);
     const gravatar = `https://www.gravatar.com/avatar/${md5(email)}`;
     const result = await pool.query(
       "INSERT INTO usuarios (nombre,email,password,gravatar) VALUES ($1,$2,$3,$4) RETURNING *",
-      [nombre, email, hash, gravatar]
+      [name, email, hash, gravatar]
     );
     const token = await createToken({ id: result.rows[0].id });
     res.cookie("token", token, {
-      httpOnly: true,
+      //httpOnly: true,
+      secure: true,
       sameSite: "none",
       maxAge: 1000 * 60 * 60 * 24,
     });
-    res.json({ message: "Usuario registrado con exito", token });
+    res.json({
+      message: "Usuario registrado con exito",
+      token,
+      user: result.rows[0],
+    });
   } catch (error) {
     if (error.code === "23505") {
       return res
@@ -45,6 +50,7 @@ export const signin = async (req, res) => {
   const token = await createToken({ id: user.id });
   res.cookie("token", token, {
     httpOnly: true,
+    secure: true,
     sameSite: "none",
     maxAge: 1000 * 60 * 60 * 24,
   });
