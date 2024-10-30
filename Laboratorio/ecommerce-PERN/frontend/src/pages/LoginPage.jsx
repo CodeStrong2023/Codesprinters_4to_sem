@@ -34,7 +34,7 @@ const LoginPage = () => {
     }
   });
   return (
-    <div className="h-[calc(100vh-64px)] flex items-center justify-center">
+    <div className="h-full flex items-center justify-center">
       <Card>
         {JSON.stringify(errorsAuth) !== "null" && (
           <div className="bg-red-500 text-white p-4 my-4">

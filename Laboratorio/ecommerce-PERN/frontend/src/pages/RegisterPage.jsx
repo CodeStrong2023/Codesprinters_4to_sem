@@ -36,7 +36,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[100vh] w-full">
+    <div className="flex flex-col items-center justify-center h-full w-full">
       <Card>
         {JSON.stringify(errorsAuth) !== "null" && (
           <div className="bg-red-500 text-white p-4 my-4">

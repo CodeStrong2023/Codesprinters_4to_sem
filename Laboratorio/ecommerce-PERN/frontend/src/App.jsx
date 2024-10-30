@@ -7,19 +7,26 @@ import RegisterPage from "./pages/RegisterPage";
 import TareasFormPage from "./pages/TareasFormPage";
 import TareasPage from "./pages/TareasPage";
 import NotFound from "./pages/NotFound";
+import Navbar from "./components/navbar/Navbar";
+import { Layout } from "./components/ui";
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/tareas" element={<TareasPage />} />
-      <Route path="/tareas/new" element={<TareasFormPage />} />
-      <Route path="/tareas/editar/:id" element={<TareasFormPage />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <Navbar />
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/tareas" element={<TareasPage />} />
+          <Route path="/tareas/new" element={<TareasFormPage />} />
+          <Route path="/tareas/editar/:id" element={<TareasFormPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Layout>
+    </>
   );
 }
 
