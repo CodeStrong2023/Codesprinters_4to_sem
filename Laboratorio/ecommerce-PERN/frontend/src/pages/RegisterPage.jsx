@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 const RegisterPage = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
+  const { setUser, setErrorsAuth, errorsAuth } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -15,21 +15,36 @@ const RegisterPage = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    const response = await axios.post(
-      "http://localhost:3000/api/signup",
-      data,
-      {
-        withCredentials: true,
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/signup",
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      setUser(response.data.user);
+      navigate("/profile");
+    } catch (error) {
+      console.log(error);
+      if (Array.isArray(error.response.data)) {
+        setErrorsAuth(error.response.data);
       }
-    );
-    setUser(response.data.user);
-    navigate("/profile");
+      setErrorsAuth([error.response.data.message]);
+    }
+    console.log(data);
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-[100vh] w-full">
       <Card>
+        {JSON.stringify(errorsAuth) !== "null" && (
+          <div className="bg-red-500 text-white p-4 my-4">
+            {errorsAuth.map((error, index) => (
+              <p key={index}>{error}</p>
+            ))}
+          </div>
+        )}
         <h3 className="text-2xl font-bold text-blue-600 my-6 mx-4">Registro</h3>
         <form className="space-y-4 w-[50vw]" onSubmit={handleSubmit(onSubmit)}>
           <Input

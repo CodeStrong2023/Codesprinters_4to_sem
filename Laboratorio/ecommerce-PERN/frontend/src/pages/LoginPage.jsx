@@ -7,27 +7,42 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
+  const { setUser, setErrorsAuth, errorsAuth } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = handleSubmit(async (data) => {
-    const response = await axios.post(
-      "http://localhost:3000/api/signin",
-      data,
-      {
-        withCredentials: true,
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/signin",
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+      setUser(response.data.user);
+      console.log(response.data);
+      navigate("/profile");
+    } catch (error) {
+      console.log(error);
+      if (Array.isArray(error.response.data)) {
+        setErrorsAuth(error.response.data);
       }
-    );
-    setUser(response.data.user);
-    navigate("/profile");
-    console.log(response.data);
+      setErrorsAuth([error.response.data.message]);
+    }
   });
   return (
     <div className="h-[calc(100vh-64px)] flex items-center justify-center">
       <Card>
+        {JSON.stringify(errorsAuth) !== "null" && (
+          <div className="bg-red-500 text-white p-4 my-4">
+            {errorsAuth.map((error, index) => (
+              <p key={index}>{error}</p>
+            ))}
+          </div>
+        )}
         <h3 className="text-2xl font-bold text-blue-600 my-6 mx-4">Login</h3>
         <form onSubmit={onSubmit} className="space-y-4 w-[50vw]">
           <Input
