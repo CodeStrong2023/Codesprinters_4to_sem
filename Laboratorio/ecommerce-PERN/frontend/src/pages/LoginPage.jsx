@@ -13,15 +13,12 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const baseURL = import.meta.env.VITE_BACKEND || "http://localhost:3000/api";
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/signin",
-        data,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.post(baseURL, data, {
+        withCredentials: true,
+      });
       await setUser(response.data.user);
       console.log(response.data);
       setTimeout(() => {

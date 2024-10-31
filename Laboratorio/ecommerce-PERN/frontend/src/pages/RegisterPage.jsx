@@ -13,16 +13,12 @@ const RegisterPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const baseURL = import.meta.env.VITE_BACKEND || "http://localhost:3000/api";
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/signup",
-        data,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.post(baseURL, data, {
+        withCredentials: true,
+      });
       setUser(response.data.user);
       navigate("/profile");
     } catch (error) {
