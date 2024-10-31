@@ -22,9 +22,11 @@ const LoginPage = () => {
           withCredentials: true,
         }
       );
-      setUser(response.data.user);
+      await setUser(response.data.user);
       console.log(response.data);
-      navigate("/profile");
+      setTimeout(() => {
+        navigate("/profile");
+      }, 1000);
     } catch (error) {
       console.log(error);
       if (Array.isArray(error.response.data)) {

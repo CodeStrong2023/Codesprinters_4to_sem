@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState, useContext } from "react";
 import { useEffect } from "react";
-import Cookie from "js-cookie";
+import Cookies from "js-cookie";
 import axios from "axios";
 const AuthContext = createContext();
 const useAuth = () => {
@@ -16,7 +16,11 @@ const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [errors, setErrors] = useState(null);
   useEffect(() => {
-    if (Cookie.get("token")) {
+    console.log("paso");
+    console.log(Cookies.get());
+    console.log(Cookies.get("token"));
+    if (Cookies.get("token")) {
+      console.log("paso");
       axios
         .get("http://localhost:3000/api/profile", {
           withCredentials: true,
