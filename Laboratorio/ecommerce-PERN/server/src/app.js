@@ -17,6 +17,7 @@ app.use(
     credentials: true,
   })
 );
+
 app.use("/api", tareasRoutes);
 app.use("/api", authRoutes);
 

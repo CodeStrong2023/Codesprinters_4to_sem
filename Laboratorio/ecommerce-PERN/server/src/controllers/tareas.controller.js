@@ -14,12 +14,12 @@ export const listarTareas = async (req, res, next) => {
   }
 };
 
-export const crearTarea = async (req, res) => {
+export const crearTarea = async (req, res, next) => {
   const { titulo, descripcion } = req.body;
   try {
     const result = await pool.query(
       "INSERT INTO tareas (titulo,descripcion,usuario_id) VALUES ($1,$2,$3) RETURNING *",
-      [titulo, descripcion.req.userId]
+      [titulo, descripcion, req.userId]
     );
 
     res.json({ message: "Tarea creada", result: result.rows });

@@ -49,7 +49,7 @@ export const signin = async (req, res) => {
   }
   const token = await createToken({ id: user.id });
   res.cookie("token", token, {
-    httpOnly: true,
+    //httpOnly: true,
     secure: true,
     sameSite: "none",
     maxAge: 1000 * 60 * 60 * 24,
