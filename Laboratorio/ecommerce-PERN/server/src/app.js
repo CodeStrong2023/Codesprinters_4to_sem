@@ -4,6 +4,7 @@ import tareasRoutes from "./router/tareas.routes.js";
 import authRoutes from "./router/auth.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { ORIGIN } from "./config.js";
 const app = express();
 
 //middlewares
@@ -13,7 +14,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ORIGIN,
     credentials: true,
   })
 );
