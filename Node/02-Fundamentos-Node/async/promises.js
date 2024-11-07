@@ -9,9 +9,9 @@ function hola(nombre){
 
 function hablar(nombre) {
     return new Promise( (resolve, reject) => { //Usamos la sintaxis de ES6
-    setTimeout(function () {
-        console.log('bla bla bla');
-        resolve(nombre);
+        setTimeout(function () {
+            console.log('bla bla bla');
+            resolve(nombre);
         }, 1000);
     });
 }
@@ -35,4 +35,8 @@ hola('Ariel')
 .then(adios)
 .then((nombre) => {
     console.log('Terminando el proceso');
+})
+.catch(error => {
+    console.log('Ha habido un error');
+    console.log(error);
 })
